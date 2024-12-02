@@ -6,6 +6,7 @@ class Program
     static void Main()
     {
         string path = "input.txt";
+        int distance = 0;
         
         if (File.Exists(path))
         {
@@ -23,11 +24,17 @@ class Program
                 }
             }
 
-            Console.WriteLine("Linke Zahlen:");
-            Console.WriteLine(string.Join(", ", leftList));
+            leftList.Sort();
+            rightList.Sort();
 
-            Console.WriteLine("Rechte Zahlen:");
-            Console.WriteLine(string.Join(", ", rightList));
+            for (int i = 0; i < rightList.Count; i++)
+            {
+                int temp = rightList[i] - leftList[i];
+                Console.WriteLine(temp);
+                distance += Math.Abs(temp);
+            }
+
+            Console.WriteLine("The total distance is: " + distance);
         }
         else
         {
